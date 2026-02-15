@@ -12,8 +12,6 @@ object BuildSettings {
   val compilerFlags: Seq[String] = Seq(
     "-deprecation",
     "-unchecked",
-    "-Xexperimental",
-    "-Xlint:_,-infer-any",
     "-feature",
     "-release", "17")
 
@@ -25,6 +23,7 @@ object BuildSettings {
   lazy val buildSettings: Seq[Def.Setting[_]] = baseSettings ++ Seq(
     organization := "com.netflix.iep",
     scalaVersion := Dependencies.Versions.scala,
+    crossScalaVersions := Seq(Dependencies.Versions.scala, Dependencies.Versions.scala3),
     scalacOptions ++= BuildSettings.compilerFlags,
     javacOptions ++= BuildSettings.javaCompilerFlags,
     doc / javacOptions := BuildSettings.javadocFlags,
